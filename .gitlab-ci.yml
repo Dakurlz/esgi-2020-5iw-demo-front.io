@@ -1,0 +1,21 @@
+image: node:alpine
+pages:
+  stage: deploy
+  script:
+    - mkdir .public
+    - cp -r * .public
+    - mv .public public
+    - yarn -v
+    - echo "Test ls racine"
+    - ls -la
+    - echo "Test ls parent"
+    - ls -la ..
+    - echo "Test public"
+    - ls -la public
+    - cd public
+    - yarn install
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
